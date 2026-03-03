@@ -21,14 +21,6 @@ export function DatePicker({ isOpen, onClose, startDate, endDate, onApply }: Dat
     const handleNextMonth = () => setViewDate(prev => addMonths(prev, 1));
 
     useEffect(() => {
-        if (isOpen) {
-            setSelectedStart(startDate);
-            setSelectedEnd(endDate);
-            setViewDate(startDate || new Date());
-        }
-    }, [isOpen, startDate, endDate]);
-
-    useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
             if (e.key === 'Escape') onClose();
         };

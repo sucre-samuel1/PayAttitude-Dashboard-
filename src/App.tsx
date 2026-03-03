@@ -1,5 +1,6 @@
 import React from 'react';
 import { Calendar } from 'lucide-react';
+import { format } from 'date-fns';
 import { Layout } from './components/Layout/Layout';
 import { FilterTab } from './components/FilterTab/FilterTab';
 import { OverviewStats } from './components/OverviewStats/OverviewStats';
@@ -53,7 +54,9 @@ function App() {
               className="px-4 py-2 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 flex items-center transition-colors shadow-sm"
             >
               <Calendar className="w-4 h-4 mr-2 text-gray-400" />
-              Select dates
+              {dateRange.start && dateRange.end
+                ? `${format(dateRange.start, 'MMM d')} - ${format(dateRange.end, 'MMM d')}`
+                : 'Select dates'}
             </button>
           </div>
         </div>
@@ -82,6 +85,7 @@ function App() {
       </div>
 
       <DatePicker
+        key={showDatePicker ? 'open' : 'closed'}
         isOpen={showDatePicker}
         onClose={() => setShowDatePicker(false)}
         startDate={dateRange.start}
